@@ -9,4 +9,13 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
   },
+  "reporter": "cypress-multi-reporters",
+  "reporterOptions": {
+    "reportDir": "cypress/reports",
+    "reporterEnabled": "cypress-mochawesome-reporter, mocha-junit-reporter",
+    "mochaJunitReporterReporterOptions": {
+      "mochaFile": "cypress/reports/junit/reports-[hash].xml",
+      "toConsole": true
+    }
+  }
 });

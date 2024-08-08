@@ -1,12 +1,33 @@
-name: End-to-end tests
+name: API End-to-end tests
 on: [push, workflow_dispatch]
+
 jobs:
   cypress-run:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        timeout-minutes: 5
+        with:
+          record: true
+          group: Single Cypress Test run
+          tag: single-run
+          # ci-build-id: '${{ github.event.head_commit.message }}-${{ github.sha }}-${{ github.workflow }}-${{ github.job }}'
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass the project ID from the secrets through environment variable
+          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+          # overwrite commit message sent to Dashboard
+          COMMIT_INFO_MESSAGE: '${{ github.event.head_commit.message }}-${{ github.sha }}-${{ github.workflow }}-${{ github.job }}'
+          # re-enable PR comment bot
+          COMMIT_INFO_SHA: ${{github.event.pull_request.head.sha}}
+ 
+      - name: Upload Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: cypress/reports/

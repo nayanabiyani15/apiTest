@@ -32,3 +32,8 @@ npm run report
 1.  Pipeline will be run on every new commit
 
 2. Trigger pipeline run manually by going apiTest repository -> Actions tab -> select API End-to-end tests on left side -> then click Run WorkFlow on right side to trigger manual run.
+
+
+## Defect found 
+1. It is possible to create the post with invalid json which returns 201 response test name Create the post for the user with invalid data
+   

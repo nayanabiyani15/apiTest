@@ -31,4 +31,4 @@ npm run report
 ## Running on pipeline
 1.  Pipeline will be run on every new commit
 
-2. Trigger pipeline run manually by going apiTest repository -> Actions tab ->
+2. Trigger pipeline run manually by going apiTest repository -> Actions tab -> select API End-to-end tests on left side -> then click Run WorkFlow on right side to trigger manual run.

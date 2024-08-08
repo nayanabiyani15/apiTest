@@ -3,6 +3,7 @@
     "cypress": "^13.13.2"
   },
   "dependencies": {
+    "cypress-multi-reporters": "^1.6.4",
     "npm": "^10.8.2"
   },
   "scripts": {

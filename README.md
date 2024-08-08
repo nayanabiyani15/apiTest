@@ -1,6 +1,6 @@
 # apiTest
 
-[![apiTest](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/knfu6v/master&style=for-the-badge&logo=cypress)]([https://dashboard.cypress.io/projects/knfu6v/runs])
+[![apiTest](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/knfu6v/main&style=for-the-badge&logo=cypress)]([[https://dashboard.cypress.io/projects/knfu6v/run](https://dashboard.cypress.io/projects/knfu6v/runs)s])
 
 ## Running on local
 

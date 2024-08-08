@@ -8,13 +8,15 @@ describe('Verify create user posts ', () => {
     };
     
     const postContent = {
-        title: "Test the first post of the user",
-       body:  "Test  post body is looking good " + Math.random().toString(5).substring(2),
+      title: "Test the first post of the user",
+      body:  "Test  post body is looking good " + Math.random().toString(5).substring(2),
     };
 
 
     before("create user", () => {
       cy.createUser(userDetail).then((response) => {
+        expect (response.status).to.eq(201);
+        expect(response.body.id).to.exist;
         userID =response.body.id;
       });
     });
@@ -31,11 +33,16 @@ describe('Verify create user posts ', () => {
         });
     });
 
-    it("Create the post for the user with invalid data", () => {        
-        cy.createPost(userID, postContent).then((response) => {
-            expect (response.status).to.eq(201);
+    it("Create the post for the user with invalid data", () => {      
+      const postContent = {
+        title: "Test the first post of the user",
+        body:  "Test  post body is looking good " + Math.random().toString(5).substring(2),
+        message: ""
+      };
 
-        });
+      cy.createPost(userID, postContent, false).then((response) => {
+        expect (response.status).to.eq(201);
+      });
     });
 });
 
@@ -59,6 +66,7 @@ describe('Verify existing posts for the user', () => {
     before("create user", () => {
       cy.createUser(userDetail).then((response) => {
         expect (response.status).to.eq(201);
+        expect(response.body.id).to.exist;
         userID =response.body.id;
       });
     });

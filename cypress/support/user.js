@@ -1,14 +1,13 @@
-Cypress.Commands.add('createUser', (requestBody) => {
+Cypress.Commands.add('createUser', (requestBody, status=true) => {
   cy.request({
       method: "POST", 
       url: "users",
       headers: {
         Authorization : "Bearer " + Cypress.config("token")
       },
-      body: requestBody
+      body: requestBody,
+      failOnStatusCode: status
     }).then((response) => {
-      expect (response.status).to.eq(201);
-      expect(response.body.id).to.exist;
       return response;
     });
 });

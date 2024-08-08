@@ -1,11 +1,12 @@
-Cypress.Commands.add('createPost', (userID, requestBody) => {
+Cypress.Commands.add('createPost', (userID, requestBody , status=true) => {
     cy.request({
         method: "POST", 
         url: "users/"+ userID + "/posts",
         headers: {
           Authorization : "Bearer " + Cypress.config("token")
         },
-        body: requestBody
+        body: requestBody,
+        failOnStatusCode: status
       }).then((response) => {
         return response;
       });
